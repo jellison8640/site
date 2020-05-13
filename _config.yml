@@ -1,6 +1,12 @@
 title: Jordan Ellison
+site_name: jellison8640
 email: jellison8640@gmail.com
 
+nav:
+    - Home: index.md
+    - Guild Analysis: guildwork.html
+    - About: about.md
+    
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
 github_username:  jellison8640 # DO NOT include the @ character, or else the build will fail!
