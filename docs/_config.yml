@@ -3,7 +3,7 @@ site_name: jellison8640
 email: jellison8640@gmail.com
 
 nav:
-    - Home: index.md
+    - "Home": index.md
     - Guild Analysis: guildwork.html
     - About: about.md
     
