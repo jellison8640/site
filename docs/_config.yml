@@ -2,18 +2,13 @@ title: Jordan Ellison
 site_name: jellison8640
 email: jellison8640@gmail.com
 
-
-output_dir: "docs"
 navbar:
   title: "Cars"
   left:
   - text: "Home"
-   href: index.html
-  - text: "Speed and Distance"
-   href: speed-and-distance.html
-output:
-  html_document:
- theme: cosmo
+   href: index.md
+  - text: "Guilds"
+   href: guilds.html
     
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
