@@ -2,7 +2,7 @@
 title: "About Me"
 ---
 # Who am I?
-<img align="right" width="480" height="640" src="https://github.com/jellison8640/site/blob/master/IMG_5479.HEIC">
+<img align="right" width="480" height="640" src="https://github.com/jellison8640/site/blob/master/IMG_7927%202.HEIC">
 My name is Jordan and I earned a BA from Colorado College in 2019. Though my undergraduate thesis fit the theme of predation ecology [The Rodent Eats the Raptor](https://digitalccbeta.coloradocollege.edu/pid/coccc:31273 "My Thesis!"), I am most interested in working with birds in the areas of spatial ecology.
 
 ## Why make this page?
