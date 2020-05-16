@@ -1,11 +1,12 @@
 title: Jordan Ellison
 email: jellison8640@gmail.com
 
-nav:
- - Home: 'index.md'
- - Sample: 'worskshop1.md'
- - Post: 'post_sample.md'
- - About Me: 'aboutme.md'
+header_pages:
+ - index.md
+ - workshop1.md
+ - post-sample.md
+ - about.md
+ 
  
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
