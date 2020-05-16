@@ -14,6 +14,5 @@ linkedin: jordan-ellison-a0b628148
 show_excerpts: true # set to false to remove excerpts on the homepage
 
 theme: minima
-      skin: dark
 toc: TRUE
 highlight: breezedark
