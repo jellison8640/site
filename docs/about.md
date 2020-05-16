@@ -11,10 +11,10 @@ Thus far, all my coding has been what I've been able to figure out analyzing var
 
 ### Potential Topics THUS far
 
-1. links to **estero la cruz guilds**
-2. biodiversity at estero la cruz
-3. lidar build dem/dtm/chm
-4. thesis? code/graphs?
+1. lidar build dem/dtm/chm
+2. thesis? code/graphs?
+3. links to **estero la cruz guilds**
+4. biodiversity at estero la cruz
 5. ????
 
 Lots of neat things to play with.
