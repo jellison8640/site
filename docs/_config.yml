@@ -1,14 +1,13 @@
 title: Jordan Ellison
-site_name: jellison8640
 email: jellison8640@gmail.com
 
 navbar:
-  title: "Cars"
+  title: "Jordan Ellison"
   left:
   - text: "Home"
    href: index.md
-  - text: "Guilds"
-   href: guilds.html
+  - text: "Sample"
+   href: workshop1.md
     
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
