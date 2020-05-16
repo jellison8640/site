@@ -1,11 +1,13 @@
 title: Jordan Ellison
 email: jellison8640@gmail.com
 
-header_pages:
- - workshop1.md
- - about.md
- - post-sample.md
-   
+ main:
+  - title: "Home"
+    url: /index.md/
+  - title: "lidR Sample"
+    url: /workshop1.md/
+  - title: "About Me"
+    url: /about.md/
     
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
