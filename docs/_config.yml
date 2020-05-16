@@ -1,22 +1,19 @@
 title: Jordan Ellison
 email: jellison8640@gmail.com
 
-<div class="navbar" id="page-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/">EverCoding.net</a>
-          <ul class="nav">
-            <li><a href="/index.md">Home</a></li>        
-        <li><a href="/workshop1.md">lidR Sample</a></li>
-        <li><a href="/aboutme.md">About ME</a></li>
+header_pages:
+ - workshop1.md
+ - about.md
+ - post-sample.md
    
     
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
 github_username:  jellison8640 # DO NOT include the @ character, or else the build will fail!
-
+linkedin: jordan-ellison-a0b628148
 show_excerpts: true # set to false to remove excerpts on the homepage
 
 theme: minima
+      skin: dark
 toc: TRUE
 highlight: breezedark
