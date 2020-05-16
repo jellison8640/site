@@ -1,6 +1,6 @@
 ---
-title: Welcome
+title: Home
 ---
-# to my new page
+# Welcome to my Site
 
-Test to set index 
+***IN PROGRESS***
