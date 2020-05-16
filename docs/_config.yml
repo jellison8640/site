@@ -1,9 +1,15 @@
 title: Jordan Ellison
 email: jellison8640@gmail.com
 
-nav:
-   Home: index.md
-   Sample: workshop1.md
+<div class="navbar" id="page-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">EverCoding.net</a>
+          <ul class="nav">
+            <li><a href="/index.md">Home</a></li>        
+        <li><a href="/workshop1.md">lidR Sample</a></li>
+        <li><a href="/aboutme.md">About ME</a></li>
+   
     
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
