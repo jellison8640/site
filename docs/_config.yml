@@ -2,12 +2,8 @@ title: Jordan Ellison
 email: jellison8640@gmail.com
 
 nav:
-  title: "Jordan Ellison"
-  left:
-  - text: "Home"
-   href: index.md
-  - text: "Sample"
-   href: workshop1.md
+   Home: index.md
+   Sample: workshop1.md
     
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
