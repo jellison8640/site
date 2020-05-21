@@ -13,7 +13,7 @@ output:
 
 # About this Document
 
-Below is a sample of a workshop I began writing to share a project I began working on in early 2019. While this was never presented, it was a way for me to document and save a sample of the code I was writing as I worked through processing a LiDAR dataset. Rather than completing these steps in GIS-specific programs, I used these data in my introduction to the using R for  spatial analyses. 
+Below is a sample of a workshop I began writing to share a project I began working on in early 2019. While this was never presented, it was a way for me to document and save a sample of the code I was writing as I worked through processing a LiDAR dataset. Rather than completing these steps in GIS-specific programs that I was familiar with, I used these data as my introduction to the use of R for spatial analyses. 
 
 
 # Load Packages
