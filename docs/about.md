@@ -9,8 +9,8 @@ My name is Jordan and I earned a BA from Colorado College in 2019. I completed a
 
 ### Current Projects
 
-* Long-term Waterbird surveys in Bahía de Kino, Sonora, Mexico
+* Analysis of waterbird surveys in Bahía de Kino, Sonora, Mexico
   * Use of modeling to analyze trends in bird abundance
 * Flammulated Owl habitat selection in collaboration with Dr. Brian Linkhart and Kate McGinn
-  * Analyze long-term data on nest site preferences
+  * Analyzis of long-term data on nest site preferences
   * Utilization of LiDAR dataset to extract biologically relevant characteristics
