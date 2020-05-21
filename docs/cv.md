@@ -1,4 +1,4 @@
 ---
-title: Resume
+title: CV
 ---
-<img align="center" src="/cv.jpg">
+<a href="test.pdf" class="image fit"><img src="cv.jpg" alt=""></a>	
