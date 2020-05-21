@@ -11,9 +11,19 @@ output:
     toc_float: yes
 ---
 
+# About this Document
+
+Below is a sample of a workshop I began writing to share a project I began working on in early 2019. While this was never presented, it was a way for me to document and save a sample of the code I was writing as I worked through processing a LiDAR dataset. Rather than completing these steps in GIS-specific programs, I used these data in my introduction to the using R for  spatial analyses. 
+
+
+# Load Packages
 The first thing we will want to do is set the working directory and load our packages. 
 Note that loading lidR will also automatically load "raster" and "sp"—two packages that help visualize and process spatial data. rgdal is another one that helps deal with spatial data, we will use it to export our trees. Loading lidR will also load sp and something else that are both important to do stuff. 
 
+Check the working directory and make sure it is set to where your data is! 
+```r 
+getwd()
+```
 
 ```r
 library(lidR)
