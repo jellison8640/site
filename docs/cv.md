@@ -1,6 +1,6 @@
 ---
 title: CV
 ---
-[View it]{{< ref "cv.md" >}}
+[View it]{{< ref "test.pdf" >}}
 {{% staticref "test.pdf" %}}Download my CV{{% /staticref %}}
 
