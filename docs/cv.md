@@ -1,6 +1,4 @@
 ---
 title: CV
 ---
-[View it]{{< ref "test.pdf" >}}
-{{% staticref "test.pdf" %}}Download my CV{{% /staticref %}}
-
+<a href="https://github.com/jellison8640/site/blob/master/docs/test.pdf" target="CV">PDF.</a>
