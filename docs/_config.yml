@@ -8,11 +8,10 @@ header_pages:
  - CV.html
  - about.md
  
- 
- 
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
 github_username:  jellison8640 # DO NOT include the @ character, or else the build will fail!
+linkedin: www.linkedin.com/in/jordan-ellison10
 
 show_excerpts: false # set to false to remove excerpts on the homepage
 
