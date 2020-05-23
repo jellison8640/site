@@ -1,5 +1,5 @@
 ---
-title: "Estero La Cruz Guild Analysis"
+title: "La Cruz Guild Analysis"
 author: "Jordan Ellison Ellison"
 date: "23/5/2020"
 output:
@@ -14,11 +14,9 @@ output:
 
 # Introduction
 
-In this document, I'll share some of the steps I've taken to analyze several years of waterbird surveys at Estero La Cruz in Bahía de Kino, Sonora. This document will show work that I've done with shorebirds, even though I have analyzed the other guilds.
-When initially working with the data, I started with different GLMs and tried to use multiple variables to take advantage of the various data we collect at each survey. I was having trouble finding a model that was seemingly a good fit. As I began using more complex statistically models, I ultimately found myself following the advice to keep it all as simple as possible.
+In this document, I'll share some of the steps I've taken to analyze several years of waterbird surveys at Estero La Cruz in Bahía de Kino, Sonora. This document shows a sample of the work that I've done, using shorebirds as the example, even though I have analyzed the other waterbird guilds.
 The goal of this document is to share my attempt to answer the question:
 **Has the number of birds at Estero La Cruz changed over time?**
-
 
 ```
 ## Warning: package 'knitr' was built under R version 3.6.3
