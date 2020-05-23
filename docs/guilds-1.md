@@ -1,6 +1,6 @@
 ---
 title: "La Cruz Guild Analysis"
-author: "Jordan Ellison Ellison"
+author: "Jordan Ellison"
 date: "23/5/2020"
 output:
   html_document: 
@@ -14,7 +14,8 @@ output:
 
 # Introduction
 
-In this document, I'll share some of the steps I've taken to analyze several years of waterbird surveys at Estero La Cruz in Bahía de Kino, Sonora. This document shows a sample of the work that I've done, using shorebirds as the example, even though I have analyzed the other waterbird guilds.
+In this document, I'll share some of the steps I've taken to analyze several years of waterbird surveys at Estero La Cruz in Bahía de Kino, Sonora performed by the Prescott College Kino Bay Center Waterbird Monitoring Program. 
+This document shows a sample of the work that I've done, using shorebirds as the example, even though I have analyzed the other waterbird guilds.
 The goal of this document is to share my attempt to answer the question:
 **Has the number of birds at Estero La Cruz changed over time?**
 
