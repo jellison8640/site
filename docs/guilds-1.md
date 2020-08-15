@@ -1,7 +1,7 @@
 ---
 title: "La Cruz Guild Analysis"
 author: "Jordan Ellison"
-date: "2020-05-23"
+date: 2020-05-23
 output:
   html_document: 
     fig_width: 8
