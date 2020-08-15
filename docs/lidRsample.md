@@ -1,7 +1,7 @@
 ---
 title: "Sample lidR Workshop"
 author: "Jordan Ellison"
-date: "8/14/2020"
+date: "2020-08-14"
 output:
   html_document:
     keep_md: true
