@@ -271,12 +271,12 @@ Here the plot above shows the convex hulls of the trees, but as viewed from abov
 
 ## Rumple Index
 
-The rumple index is a metric used to calculate the "roughness" of the surface of an area by calculating the ratio of the area and the projected area of the ground. Rumple index has been used as a way to look at structural complexness/heterogeneity. Higher values of this index have been shown (in correlation with other metrics) to be associated to old-growth forests [^3]
+The rumple index is a metric used to calculate the "roughness" of the surface of an area by calculating the ratio of the area and the projected area of the ground. Rumple index has been used as a way to look at structural complexness/heterogeneity. Higher values of this index have been shown (in correlation with other metrics) to be associated to old-growth forests, see Kane et al. (2010) [^3] or check out an application of it in Jenkins et al. (2019) [^4]. 
 
 According to `help("rumple_index")`:    
 > "Computes the roughness of a surface as the ratio between its area and its projected area on the ground. If the input is a gridded object (lasmetric or raster) the function computes the surfaces using Jenness's algorithm (see references). If the input is a point cloud the function uses a Delaunay triangulation of the points and computes the area of each triangle."
 
-Here we will use a CHM we generated earlier as the input. This means the function will use the algorithm derived from Jenness 2004[^4]. 
+Here we will use a CHM we generated earlier as the input. This means the function will use the algorithm derived from Jenness 2004[^5]. 
 
 
 ```r
@@ -309,5 +309,7 @@ Thanks for checking out this little document I've put together. Feel free to let
 
 [^1]: Li, W., Guo, Q., Jakubowski, M. K., & Kelly, M. (2012). A new method for segmenting individual trees from the lidar point cloud. Photogrammetric Engineering & Remote Sensing, 78(1), 75-84.
 [^2]: Dalponte, M. and Coomes, D. A. (2016), Tree-centric mapping of forest carbon density from airborne laser scanning and hyperspectral data. Methods Ecol Evol, 7: 1236–1245. doi:10.1111/2041-210X.12575.
-[^3]: Jenness, J. S. (2004). Calculating landscape surface area from digital elevation models. Wildlife Society Bulletin, 32(3), 829–839.z
-[^4]: Kane, V. R., McGaughey, R. J., Bakker, J. D., Gersonde, R. F., Lutz, J. A., & Franklin, J. F. (2010). Comparisons between field-and LiDAR-based measures of stand structural complexity. Canadian Journal of Forest Research, 40(4), 761-773.
+[^3]: Kane, V. R., McGaughey, R. J., Bakker, J. D., Gersonde, R. F., Lutz, J. A., & Franklin, J. F. (2010). Comparisons between field-and LiDAR-based measures of stand structural complexity. Canadian Journal of Forest Research, 40(4), 761-773.
+[^4]: Jenkins, J. M., Lesmeister, D. B., Wiens, J. D., Kane, J. T., Kane, V. R., & Verschuyl, J. (2019). Three-dimensional partitioning of resources by congeneric forest predators with recent sympatry. Scientific reports, 9(1), 1-10.
+[^5]: Jenness, J. S. (2004). Calculating landscape surface area from digital elevation models. Wildlife Society Bulletin, 32(3), 829–839.
+
