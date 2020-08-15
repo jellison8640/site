@@ -7,7 +7,6 @@ output:
     keep_md: true
     highlight: breezedark
     theme: cosmo
-    toc: yes
 ---
 
 # About this Document
