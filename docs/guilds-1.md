@@ -1,14 +1,13 @@
 ---
 title: "La Cruz Guild Analysis"
 author: "Jordan Ellison"
-date: "5/23/2020"
+date: "2020-05-23"
 output:
   html_document: 
     fig_width: 8
     highlight: breezedark
     theme: cosmo
     toc: yes
-    keep_md: yes
 ---
 
 # Introduction
