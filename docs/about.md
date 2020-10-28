@@ -4,7 +4,8 @@ title: "About Me"
 # Hello!
 
 <img align="right" src="photos/flam.jpg" width="375" height="500">
-My name is Jordan and I earned a BA from Colorado College in 2019. I completed an undergraduate thesis about the effects of predation of Flammulated Owls by Red Squirrels entitled [The Rodent Eats the Raptor](https://digitalccbeta.coloradocollege.edu/pid/coccc:31273 "My Thesis!"). While I have experience working with various types of birds, I am most interested in working with raptors in the area of quantitative and/or spatial ecology. I'm highly motivated to begin working towards a graduate degree as a way to dive deeper into avian conservation and ecology.
+My name is Jordan and I earned a BA from Colorado College in 2019. I completed an undergraduate thesis about the effects of predation of Flammulated Owls by Red Squirrels entitled [The Rodent Eats the Raptor](https://digitalccbeta.coloradocollege.edu/pid/coccc:31273 "My Thesis!"). While I have experience working with various types of birds, I am most interested in working with raptors in the area of quantitative and/or spatial ecology. 
+I'm very excited to begin working towards a master's degree at New Mexico State University in January 2021. 
 
 ### Current Projects
 
@@ -13,3 +14,4 @@ My name is Jordan and I earned a BA from Colorado College in 2019. I completed a
   * Utilization of LiDAR dataset to extract biologically relevant characteristics to understand habitat quality
 * Analysis of waterbird surveys in Bahía de Kino, Sonora, Mexico in collaboration with Prescott College Kino Bay Center
   * Use of modeling to analyze trends in bird abundance over time
+  
