@@ -4,7 +4,7 @@ GSO Workshop
 In April 2021, I co-presented a workshop on working with spatial data in
 R to the NMSU Fish, Wildlife and Conservation Ecology Graduate Student
 Organization (GSO). One of the topics I presented on was how to make a
-simple inset map with R.
+simple inset map with R. Here is 
 
 ## Packages
 
@@ -210,7 +210,8 @@ We’ll use the package `cowplot` to put the pieces together, specifying
 where to place the inset.
 
 ``` r
-ggdraw() + draw_plot(p1) + draw_plot(p2, x = 0.5, y = 0.65, width = 0.3, height = 0.3) 
+ggdraw() + draw_plot(p1) + draw_plot(p2, x = 0.5, y = 0.65, width = 0.3, 
+    height = 0.3) 
 ```
 
 ![](inset_files/figure-gfm/together-1.png)<!-- -->
@@ -219,7 +220,8 @@ You’ll maybe want to play with where everything lines up/fits to
 minimize white space.
 
 ``` r
-ggdraw() + draw_plot(p1) + draw_plot(p2, x = 0.725, y = 0.65, width = 0.3, height = 0.3) 
+ggdraw() + draw_plot(p1) + draw_plot(p2, x = 0.725, y = 0.65, width = 0.3, 
+    height = 0.3) 
 ```
 
 ![](inset_files/figure-gfm/together%202-1.png)<!-- -->
