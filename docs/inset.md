@@ -4,7 +4,7 @@ GSO Workshop
 In April 2021, I co-presented a workshop on working with spatial data in
 R to the NMSU Fish, Wildlife and Conservation Ecology Graduate Student
 Organization (GSO). One of the topics I presented on was how to make a 
-simple inset map with R. I have adapted my original r script into a markdown
+simple inset map with R. I have adapted my original R script into a markdown
 document for this site. 
 
 ## Packages
