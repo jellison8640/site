@@ -9,7 +9,7 @@ In January 2021, I began at New Mexico State University working towards a MS in 
 
 ### Current Projects
 
-* Burrowing Owl passive translocation advised by Dr. Martha Desmond and Dr. Fitsum Gebreselassie 
+* Effects of passive translocation on Burrowing Owls advised by Dr. Martha Desmond and Dr. Fitsum Abadi Gebreselassie 
 * Flammulated Owl habitat selection in collaboration with Dr. Brian Linkhart and Kate McGinn
   * Analyzis of long-term data on nest site selection
   * Utilization of LiDAR dataset to extract biologically relevant characteristics to understand habitat quality
