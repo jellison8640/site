@@ -2,7 +2,7 @@
 title: Welcome
 ---
 
-I am a first year MS student in Fish, Wildlife and Conservation Ecology at New Mexico State University. I am studying the impacts of passive relocation on Burrowing Owls around Phoenix, Arizona.
+I am a second-year MS student in Fish, Wildlife and Conservation Ecology at New Mexico State University. I am studying the nest distribution patterns and effects of landscape on Burrowing Owl nest survival and productivity.
 
 I have previously worked with small owls, diurnal raptors, waterbirds and songbirds. I also have experience performing a variety of statistical analyses on various longitudinal data sets, as well as extensive experience working with GIS.
 
