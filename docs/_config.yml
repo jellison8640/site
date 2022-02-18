@@ -8,6 +8,7 @@ header_pages:
  - inset.md
  - cv.md
  - about.md
+ - test.md
  
 # social links
 twitter_username: j_ellison10 # DO NOT include the @ character, or else the build will fail!
