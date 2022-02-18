@@ -17,6 +17,6 @@ linkedin: www.linkedin.com/in/jordan-ellison10
 
 show_excerpts: false # set to false to remove excerpts on the homepage
 
-theme: minima
+theme: jekyll-theme-midnight
 toc: TRUE
 highlight: breezedark
