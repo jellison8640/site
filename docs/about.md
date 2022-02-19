@@ -7,9 +7,11 @@ title: "About Me"
 My name is Jordan and I earned a BA from Colorado College in 2019. I completed an undergraduate thesis about the effects of predation of Flammulated Owls by Red Squirrels entitled [The Rodent Eats the Raptor](https://digitalccbeta.coloradocollege.edu/pid/coccc:31273 "My Thesis!"). While I have experience working with various types of birds, I am most interested in working with raptors in the area of quantitative and/or spatial ecology. 
 In January 2021, I began at New Mexico State University working towards a MS in Fish, Wildlife and Conservation Ecology. 
 
-### Current Projects
+### Projects
 
-* Effects of passive translocation on Burrowing Owls advised by Dr. Martha Desmond and Dr. Fitsum Abadi Gebreselassie 
+* Spatial Patterns of Burrowing Owl Nests and Landscape Effects on Reproduction advised by Dr. Martha Desmond and Dr. Fitsum Abadi Gebreselassie 
+  * Determing factors influencing nest distribution patterns within prairie dog colonies across a latitudinal gradient 
+  * Multi-scale effects of landscape configuration and composition on the nest survival and productivity of Burrowing Owls
 * Flammulated Owl habitat selection in collaboration with Dr. Brian Linkhart and Kate McGinn
   * Analyzis of long-term data on nest site selection
   * Utilization of LiDAR dataset to extract biologically relevant characteristics to understand habitat quality
