@@ -11,11 +11,17 @@ output:
     keep_md: true
 ---
 
+Below is a sample of data analysis I completed for the final project in my Advanced Spatial Analysis course. 
+First- using the `spatstat` package, I checked and analyzed the distribution patterns of Burrowing Owl nests within Prairie Dog colonies using Ripley's K- function and Ripley's L, a transformed version to stabilize the variance. I also identified and demonstrated using `dbscan` as potential tool to identify clusters within the nest points. 
+Secondly- I demonstrated some of the issues I had run into with using shapefiles with the `sf` package and share a function I wrote to convert shapefiles of hand-digitized classified landscapes into rasters for preparation to use `landscapemetrics`.
+Finally- I calculated and sampled metrics using `landscapemetrics` and briefly demonstrate some of the potential application of these metrics. 
+
+
 # Data Analysis
 
 ## Loading Data
 
-First, load the packages we'll use directly. They'll load any other packages they're contingent on. 
+First, load the packages we'll use directly. They'll also load any other packages they're contingent on. 
 
 ```r
 library(sf)                                  ##for working with spatial data
@@ -37,26 +43,12 @@ library(car)                                 ##for vif
 
 ### Owls Nests and Prairie Dog Colonies
 
-First we'll load the nest data for both years at the two sites. 
-
+First we'll load the nest data for two years at one site and bring in the corresponding Prairie Dog colony boundaries. 
 
 ```r
-##read nest in
+##read in nest data
 coma10nests <- st_read("Nests/2010/comanchenests.shp")
-```
 
-```
-## Reading layer `comanchenests' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Nests/2010/comanchenests.shp' 
-##   using driver `ESRI Shapefile'
-## Simple feature collection with 204 features and 4 fields
-## Geometry type: POINT
-## Dimension:     XY
-## Bounding box:  xmin: 653561.6 ymin: 4110864 xmax: 711978.8 ymax: 4133322
-## Projected CRS: WGS 84 / UTM zone 13N
-```
-
-```r
 ##coma10 actually has 2009 and 2010 nests so we'll split it
 coma09nests <- coma10nests %>% filter(Year == 2009)
 coma10nests <- coma10nests %>% filter(Year == 2010)
@@ -65,36 +57,13 @@ coma10nests <- coma10nests %>% filter(Year == 2010)
 ##in the same projection
 utm13 <- st_crs(coma10nests)
 
-##we'll also add in the colony shapefiles
-##transform them when we bring em in
+##we'll also add in a shapefile that is the perimeter of the associated 
+##prairie dog colonies
+##i'll also transform this when I bring it in so the crs is the same
 coma09cols <- st_read("Prairie Dog Colonies/2009/comatrack.shp") %>% st_transform(utm13)
-```
-
-```
-## Reading layer `comatrack' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Prairie Dog Colonies/2009/comatrack.shp' 
-##   using driver `ESRI Shapefile'
-## Simple feature collection with 32 features and 7 fields
-## Geometry type: POLYGON
-## Dimension:     XY
-## Bounding box:  xmin: -381358.2 ymin: 4072943 xmax: -324488.1 ymax: 4174135
-## Projected CRS: NAD83 / UTM zone 15N
-```
-
-```r
 coma10cols <- st_read("Prairie Dog Colonies/2010/coma2010tracks.shp") %>% st_transform(utm13)
 ```
 
-```
-## Reading layer `coma2010tracks' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Prairie Dog Colonies/2010/coma2010tracks.shp' 
-##   using driver `ESRI Shapefile'
-## Simple feature collection with 14 features and 7 fields
-## Geometry type: POLYGON
-## Dimension:     XY
-## Bounding box:  xmin: -411378.6 ymin: 4151778 xmax: -355719.4 ymax: 4177759
-## Projected CRS: NAD83 / UTM zone 15N
-```
 
 ### Prep Data for `spatstat`
 
@@ -108,7 +77,8 @@ c10win <- as.owin(coma10cols$geometry)
 ##change the nest names/identities into just the year/colony
 coma09nests$col <- as.factor(substr(coma09nests$IDENT, 1, 7))
 coma10nests$col <- as.factor(substr(coma10nests$IDENT, 1, 7))
-##we can check it and see the different levels of colonies
+
+##we can check it to see the different levels of colonies
 coma10nests$col %>% unique()
 ```
 
@@ -118,23 +88,11 @@ coma10nests$col %>% unique()
 ```
 
 ```r
-##now we turn our nests into point patterns. marked by colony
+##now we turn our nests into point patterns
 c09nests <- as.ppp(coma09nests)
-```
-
-```
-## Warning in as.ppp.sf(coma09nests): only first attribute column is used for marks
-```
-
-```r
 c10nests <- as.ppp(coma10nests)
-```
 
-```
-## Warning in as.ppp.sf(coma10nests): only first attribute column is used for marks
-```
-
-```r
+##and "mark" them by colonies
 marks(c09nests) <- coma09nests$col
 marks(c10nests) <- coma10nests$col
 
@@ -153,16 +111,15 @@ inside.owin(x=c10nests, w = c10win) %>% unique()
 ```
 ## [1]  TRUE FALSE
 ```
+So some nests are within the colonies and some aren't. That is fine for the time being so we'll continue. 
+We'll attach the corresponding "window" (here the colony boundaries) to the nests.
 
 ```r
-##some are, and some aren't that's ok- we'll keep going. 
-
-##attach window to nests
 Window(c09nests) <- c09win
 Window(c10nests) <- c10win
 ```
 
-Now that nests and colonies are in the environment in the proper formats, I wrote code to caluclate Ripply's K and Ripley's L for my nests using the `spatstat` package. I will also perform Monte Carlo tests to check for CSR.
+Now that nests and colonies are in the environment and in the proper formats, I wrote code to caluclate Ripley's K and Ripley's L for my nests using the `spatstat` package. I will also perform Monte-Carlo tests to check for Complete Spatial Randomness (CSR).
 
 ## K-Function
 
@@ -205,6 +162,7 @@ plot(c10lest)
 ```
 
 ![](geog585_files/figure-html/lest-2.png)<!-- -->
+
 These estimates are just telling us that are patterns suggest clustering at different scales. To say anything with at least some degree of certainty, we must conduct a hypothesis test. We'll perform Monte Carlo tests, which tests hypotheses using simulations and creating confidence envelopes. These tests are conservative, but can be useful. Baddeley et al. 2015. 
 
 
@@ -217,16 +175,6 @@ These estimates are just telling us that are patterns suggest clustering at diff
 ##also set to 600m since we don't care about clusters beyond the size of an avg
 ##m BUOW home range
 c09.k.95ci <- envelope(c09nests, Kest, funargs=list(rmax = 600), nsim=39, global=FALSE)
-```
-
-```
-## Generating 39 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,  39.
-## 
-## Done.
-```
-
-```r
 c09.k.95ci
 ```
 
@@ -262,16 +210,6 @@ plot(c09.k.95ci)
 ##global set to false makes simultaneous envelopes- better for null rejection
 ##nsim set to 19 for 0.05 level of significance
 c09.k.95ge <- envelope(c09nests, Kest, funargs=list(rmax = 600), nsim=19, global=TRUE)
-```
-
-```
-## Generating 19 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,  19.
-## 
-## Done.
-```
-
-```r
 c09.k.95ge
 ```
 
@@ -309,16 +247,6 @@ plot(c09.k.95ge)
 ##repeat with coma 2010 nests----
 ##pointwise confidence intervals
 c10.k.95ci <- envelope(c10nests, Kest, funargs=list(rmax = 600), nsim=39, global=FALSE)
-```
-
-```
-## Generating 39 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,  39.
-## 
-## Done.
-```
-
-```r
 c10.k.95ci
 ```
 
@@ -353,16 +281,6 @@ plot(c10.k.95ci)
 ```r
 ##simultaneous/global confidence envelopes
 c10.k.95ge <- envelope(c10nests, Kest, funargs=list(rmax = 600), nsim=19, global=TRUE)
-```
-
-```
-## Generating 19 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,  19.
-## 
-## Done.
-```
-
-```r
 c10.k.95ge
 ```
 
@@ -405,16 +323,6 @@ We'll repeat these steps, but with the L-function as it stabilizes variance. We'
 ##coma 2009----
 ##250m
 c09.l250.95ci <- envelope(c09nests, Lest, funargs=list(rmax = 250), nsim=39, global=FALSE)
-```
-
-```
-## Generating 39 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,  39.
-## 
-## Done.
-```
-
-```r
 c09.l250.95ci
 ```
 
@@ -449,16 +357,6 @@ plot(c09.l250.95ci)
 ```r
 ##simultaneous/global confidence envelopes
 c09.l250.95ge <- envelope(c09nests, Lest, funargs=list(rmax = 250), nsim=19, global=TRUE)
-```
-
-```
-## Generating 19 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,  19.
-## 
-## Done.
-```
-
-```r
 c09.l250.95ge
 ```
 
@@ -496,16 +394,6 @@ plot(c09.l250.95ge)
 ##600m
 ##pointwise confidence intervals
 c09.l600.95ci <- envelope(c09nests, Lest, funargs=list(rmax = 600), nsim=39, global=FALSE)
-```
-
-```
-## Generating 39 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,  39.
-## 
-## Done.
-```
-
-```r
 c09.l600.95ci
 ```
 
@@ -540,16 +428,6 @@ plot(c09.l600.95ci)
 ```r
 ##simultaneous/global confidence envelopes
 c09.l600.95ge <- envelope(c10nests, Lest, funargs=list(rmax = 600), nsim=19, global=TRUE)
-```
-
-```
-## Generating 19 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,  19.
-## 
-## Done.
-```
-
-```r
 c09.l600.95ge
 ```
 
@@ -587,16 +465,6 @@ plot(c09.l600.95ge)
 ##coma 2010----
 ##250m
 c10.l250.95ci <- envelope(c10nests, Lest, funargs=list(rmax = 250), nsim=39, global=FALSE)
-```
-
-```
-## Generating 39 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,  39.
-## 
-## Done.
-```
-
-```r
 c10.l250.95ci
 ```
 
@@ -631,16 +499,6 @@ plot(c10.l250.95ci)
 ```r
 ##simultaneous/global confidence envelopes
 c10.l250.95ge <- envelope(c10nests, Lest, funargs=list(rmax = 250), nsim=19, global=TRUE)
-```
-
-```
-## Generating 19 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,  19.
-## 
-## Done.
-```
-
-```r
 c10.l250.95ge
 ```
 
@@ -678,16 +536,6 @@ plot(c10.l250.95ge)
 ##600m
 ##pointwise confidence intervals
 c10.l600.95ci <- envelope(c10nests, Lest, funargs=list(rmax = 600), nsim=39, global=FALSE)
-```
-
-```
-## Generating 39 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,  39.
-## 
-## Done.
-```
-
-```r
 c10.l600.95ci
 ```
 
@@ -722,16 +570,6 @@ plot(c10.l600.95ci)
 ```r
 ##simultaneous/global confidence envelopes
 c10.l600.95ge <- envelope(c10nests, Lest, funargs=list(rmax = 600), nsim=19, global=TRUE)
-```
-
-```
-## Generating 19 simulations of CSR  ...
-## 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,  19.
-## 
-## Done.
-```
-
-```r
 c10.l600.95ge
 ```
 
@@ -764,7 +602,8 @@ plot(c10.l600.95ge)
 ```
 
 ![](geog585_files/figure-html/l ests-8.png)<!-- -->
-The pointwise envelopes are good if we are testing a hypothesis at a specifice distance (for example at 250m where clusters were previously defined or at 600m, the distance with ~95% of an owl's movements from the burrow). 
+
+The pointwise envelopes are useful if we are testing a hypothesis at a specifice distance. For example, setting the range to biological meaningful limits would allow us to test better hypothesis. For example, 250m is the limit where clusters have been previously defined while 600m is the distance from burrows at which ~95% of an owl's movements are made. 
 
 ## Defining Clusters 
 
@@ -831,7 +670,8 @@ ggplot() + geom_sf(data=coma10nests, aes(color=col))
 
 ![](geog585_files/figure-html/db-6.png)<!-- -->
 
-# Future DIrections/Next Steps
+
+# Future Directions/Next Steps
 
 ## Landscape Analysis
 
@@ -850,12 +690,6 @@ buga09 <- st_read("Digitized Landscapes/2009/BUGAclass2009.shp") %>% st_transfor
 ```
 
 ```
-## Reading layer `BUGAclass2009' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Digitized Landscapes/2009/BUGAclass2009.shp' 
-##   using driver `ESRI Shapefile'
-```
-
-```
 ## Warning in CPL_read_ogr(dsn, layer, query, as.character(options), quiet, : GDAL
 ## Message 1: organizePolygons() received an unexpected geometry. Either a polygon
 ## with interior rings, or a polygon with less than 4 points, or a non-Polygon
@@ -866,14 +700,6 @@ buga09 <- st_read("Digitized Landscapes/2009/BUGAclass2009.shp") %>% st_transfor
 ## Warning in CPL_read_ogr(dsn, layer, query, as.character(options), quiet, :
 ## GDAL Message 1: Geometry of polygon of fid 256 cannot be translated to Simple
 ## Geometry. All polygons will be contained in a multipolygon.
-```
-
-```
-## Simple feature collection with 314 features and 4 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: 692527.8 ymin: 4841564 xmax: 753844.2 ymax: 4875955
-## Projected CRS: WGS 84 / UTM zone 13N
 ```
 
 ```r
@@ -928,12 +754,6 @@ buga10 <- st_read("Digitized Landscapes/2010/BUGAclass.shp") %>% st_transform(ut
 ```
 
 ```
-## Reading layer `BUGAclass' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Digitized Landscapes/2010/BUGAclass.shp' 
-##   using driver `ESRI Shapefile'
-```
-
-```
 ## Warning in CPL_read_ogr(dsn, layer, query, as.character(options), quiet, : GDAL
 ## Message 1: organizePolygons() received an unexpected geometry. Either a polygon
 ## with interior rings, or a polygon with less than 4 points, or a non-Polygon
@@ -944,14 +764,6 @@ buga10 <- st_read("Digitized Landscapes/2010/BUGAclass.shp") %>% st_transform(ut
 ## Warning in CPL_read_ogr(dsn, layer, query, as.character(options), quiet, :
 ## GDAL Message 1: Geometry of polygon of fid 191 cannot be translated to Simple
 ## Geometry. All polygons will be contained in a multipolygon.
-```
-
-```
-## Simple feature collection with 246 features and 4 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: 689920.7 ymin: 4840319 xmax: 753844.2 ymax: 4875955
-## Projected CRS: WGS 84 / UTM zone 13N
 ```
 
 ```r
@@ -980,7 +792,7 @@ which(is.na(st_is_valid(buga10)))
 ```
 
 ```r
-##lets assess the problematic geometries
+##lets assess the problematic geometries- first where invalid
 sapply(st_geometry(buga10)[[1]], function(x) nrow(x[[1]]))
 ```
 
@@ -991,6 +803,7 @@ sapply(st_geometry(buga10)[[1]], function(x) nrow(x[[1]]))
 
 ```r
 ##cant see a problem- so st_make_valid() should fix this one for us
+##now check the NA
 sapply(st_geometry(buga10)[[192]], function(x) nrow(x[[1]]))
 ```
 
@@ -1025,17 +838,6 @@ unique(st_is_valid(buga10))
 coma09 <- st_read("Digitized Landscapes/2009/comaclass2009.shp") %>% st_transform(utm13)
 ```
 
-```
-## Reading layer `comaclass2009' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Digitized Landscapes/2009/comaclass2009.shp' 
-##   using driver `ESRI Shapefile'
-## Simple feature collection with 439 features and 6 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: 650585.5 ymin: 4107697 xmax: 715191.1 ymax: 4136472
-## Projected CRS: WGS 84 / UTM zone 13N
-```
-
 ```r
 unique(st_is_valid(coma09, reason = TRUE))
 ```
@@ -1047,20 +849,6 @@ unique(st_is_valid(coma09, reason = TRUE))
 ```r
 #2010
 coma10 <- st_read("Digitized Landscapes/2010/comaclass2010.shp") %>% st_transform(utm13)
-```
-
-```
-## Reading layer `comaclass2010' from data source 
-##   `/Users/jordanellison/Desktop/NMSU/thesisdata/Jenny Davis_Data/GIS Data/Digitized Landscapes/2010/comaclass2010.shp' 
-##   using driver `ESRI Shapefile'
-## Simple feature collection with 416 features and 6 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: 650591.3 ymin: 4107697 xmax: 715191.1 ymax: 4136292
-## Projected CRS: WGS 84 / UTM zone 14N
-```
-
-```r
 unique(st_is_valid(coma09, reason = TRUE))
 ```
 
@@ -1113,8 +901,7 @@ unique(coma09$L1)
 ```
 
 ```r
-##^this is my class column
-
+##^this is my class column- so I'll rename it to "Class" for the function
 ##change names
 names(coma09)[2] <- "Class"
 
@@ -1140,11 +927,9 @@ ggplot() + geom_tile(data = c09.df, aes(x, y, fill=layer)) +
 
 ### Calculating Landscape Metrics
 
-
+We can check to see what metrics can be calculated with this package. It can do ~most~ of the same calculations as FRAGSTATS
+We can list them, specifying by "level" aka patch, class, or landscape. 
 ```r
-##we can see what metrics can be calculated with this package
-##note it can do ~most~ of the same calculations as FRAGSTATS
-##we can list them, and specify patch, class, or landscape level
 mlist <- list_lsm(level="landscape")
 head(mlist)
 ```
@@ -1161,9 +946,9 @@ head(mlist)
 ## 6 cai_mn  core area index   core area metric     landscape lsm_l_cai_mn
 ```
 
+It lists abbreviations, full names, the type and the function name. We'll only calculate a handful of them, picking one from each category. 
 ```r
-##it lists abbreviations, full names, the type and the function name
-##we'll calculate just a handful of em- just about one of each
+##check the list types
 unique(mlist$type)
 ```
 
@@ -1224,7 +1009,6 @@ Of these types, I've chosen:
 
 Next, we'll make a list of the metrics we want and use that to calculate them around buffers around each nest. We will maintain nest IDs so that we can join our calculated metrics back to each nest. 
 
-
 ```r
 percentage_class <- lsm_c_pland(landscape = c09)
 
@@ -1232,32 +1016,19 @@ percentage_class <- lsm_c_pland(landscape = c09)
 show_cores(landscape = c09, class = c(1, 3), edge_depth = 5, labels = FALSE)
 ```
 
-```
-## $layer_1
-```
-
-```
-## Warning: Raster pixels are placed at uneven horizontal intervals and will be
-## shifted. Consider using geom_tile() instead.
-```
-
-```
-## Warning: Raster pixels are placed at uneven vertical intervals and will be
-## shifted. Consider using geom_tile() instead.
-```
 
 ![](geog585_files/figure-html/calc-1.png)<!-- -->
 
+We can also display certain metrics. Here we'll look at the patch area of the agriculture (1) and grassland(3) categories. 
 ```r
-##show a metric- here patch area of ag(1) and grassland(3)
+##ag(1) and grassland(3)
 show_lsm(landscape = c09, class = c(1, 3), what = "lsm_p_area", labels = FALSE)
 ```
 
-```
-## $layer_1
-```
 
 ![](geog585_files/figure-html/calc-2.png)<!-- -->
+
+Now, I'll same the selected metrics across the landscape within 600m of each nest point, with "plot_id" set to correspond to the identity of each individual nest so that the data can be combine later. 
 
 ```r
 c09metrics <- sample_lsm(c09, coma09nests, shape="circle", size = 600, plot_id = coma09nests$IDENT,
@@ -1265,6 +1036,7 @@ c09metrics <- sample_lsm(c09, coma09nests, shape="circle", size = 600, plot_id =
                     "lsm_l_shdi"), classes_max = 5, verbose = TRUE)
 
 ##now we have a list of landscape level metrics sampled within 600m of each nest
+##check it quickly
 head(c09metrics)
 ```
 
@@ -1280,9 +1052,10 @@ head(c09metrics)
 ## 6     1 landscape    NA    NA cai_mn 16.7   C09-112-404              96.5
 ```
 
+The data must be rearranged to match the nest points. The nest points are set up such that each nest is a row. Below I rearrange the metrics then join them to the corresponding nests, matched up by "IDENT" in the nest points and "plot_id" in the landscape metrics. 
+
 ```r
 ##rearrange the data such that the metrics are their own columns with their values 
-##this is so i can join back the metrics to the nest data...
 nestmetrics <- c09metrics %>% group_by(plot_id) %>% spread(metric, value)
 
 #combine nest with metrics by nest IDs
@@ -1293,7 +1066,7 @@ coma09nests_full <- left_join(coma09nests, nestmetrics, by=c("IDENT" = "plot_id"
 
 ### Comparing Landscape Metrics and Clusters
 
-Now we'll just do a simple binary logistic regression to compare landscape metrics between our the decision to cluster or not.
+Now we'll just do some simple binary logistic regression to compare landscape metrics between our the decision to cluster or not.
 
 
 ```r
