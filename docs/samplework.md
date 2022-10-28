@@ -9,7 +9,7 @@ Additionally, I have the code from a final project I did for a course in which I
 
 Sample work is presented from newest to oldest:
 - Nest Survival Models with JAGS/jagsUI (hopefully coming soon!)
-- [Data Vis in R with ggplot2](https://jellison8640.github.io/site/datavis.html)
+- [Data Vis in R with ggplot2](https://jellison8640.github.io/site/rdatavis.html)
 - [Final Project](https://jellison8640.github.io/site/analysis.html)
 - [Making an Inset Map in R](https://jellison8640.github.io/site/insetmap.html)
 - [LiDAR data in R](https://jellison8640.github.io/site/lidarsample.html)
