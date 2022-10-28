@@ -1,4 +1,4 @@
-GSO Workshop
+Inset Map with sf
 ================
 
 In April 2021, I co-presented a workshop on working with spatial data in
