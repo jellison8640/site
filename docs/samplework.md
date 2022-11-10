@@ -11,9 +11,9 @@ Sample work is sorted from newest to oldest:
 - Introductioon to Google Earth Engine in R with *rgee* (coming in Nov/Dec)
 - Nest Survival Models with JAGS/jagsUI (hopefully coming soon!)
 - Sampling Landscapes with *landscapemetrics* (in progress)
-- [Data Vis in R with ggplot2](https://jellison8640.github.io/site/datavis.html)
+- [Data Vis in R with *ggplot2*](https://jellison8640.github.io/site/datavis.html)
 - [Course Final Project- Point Pattern Analysis](https://jellison8640.github.io/site/analysis.html)
 - [Making an Inset Map in R](https://jellison8640.github.io/site/insetmap.html)
-- [LiDAR data in R](https://jellison8640.github.io/site/lidarsample.html)
+- [Working with LiDAR data in R](https://jellison8640.github.io/site/lidarsample.html)
 - [Temporal Trends in Avian Guild Diversity](https://jellison8640.github.io/site/guilds-1.html)
 
