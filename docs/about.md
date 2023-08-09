@@ -10,6 +10,7 @@ My name is Jordan! I have experience working with various types of birds but am 
 ## Projects
 
 * Spatial Patterns of Burrowing Owl Nests and Landscape Effects on Reproduction advised by Dr. Martha Desmond and Dr. Fitsum Abadi Gebreselassie 
+  * Effects of prairie dog colony characteristics on Burrowing Owl nest survival across the Great Plains
   * Determing factors influencing nest distribution patterns within prairie dog colonies across a latitudinal gradient 
   * Multi-scale effects of landscape configuration and composition on the nest survival and productivity of Burrowing Owls
 * Flammulated Owl habitat selection in collaboration with Dr. Brian Linkhart and Kate McGinn
