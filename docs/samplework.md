@@ -14,6 +14,6 @@ Sample work is sorted from newest to oldest:
 - [Data Vis in R with *ggplot2*](https://jellison8640.github.io/site/datavis.html)
 - [Course Final Project- Point Pattern Analysis](https://jellison8640.github.io/site/analysis.html)
 - [Making an Inset Map in R](https://jellison8640.github.io/site/insetmap.html)
-- [Working with LiDAR data in R](https://jellison8640.github.io/site/lidRsample.md)
+- [Working with LiDAR data in R](https://jellison8640.github.io/site/lidRsample.html)
 - [Temporal Trends in Avian Guild Diversity](https://jellison8640.github.io/site/guilds-1.html)
 
